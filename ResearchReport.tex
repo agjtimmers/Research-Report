@@ -58,8 +58,6 @@ This study focuses on one potential cause of DIF: mode effects. Mode effects exi
 
 Another change in 2015 was PISA's treatment of DIF. Up until 2012, PISA treated DIF by deleting items, hence not considering DIF in the psychometric model as that was uniformly applied to the remaining items \citep{zwitser2017monitoring, OECD2012}. In 2015, DIF due to mode and country effects was considered by allowing item parameters to vary in the countries with severe item misfit \citep{feskens2019differential, OECD2015}. So, all DIF was taken into account in the psychometric model, which is also undesirable as not all DIF will bias the results \citep{zumbo2005matter, zwitser2017monitoring}. 
 
-%\citet{douglas1996item} distinguished between \textit{adverse} and \textit{benign} DIF. They defined adverse DIF as an item measuring a secondary dimension that is a nuisance dimension irrelevant to the underlying construct. This could lead to erroneous conclusions and should thus be treated \citep{breslau2008differential}. An item with benign DIF, in contrast, measures a secondary dimension that is auxiliary to the construct being measured, which can be viewed as an interesting outcome \citep{zwitser2017monitoring}.
-
 Propensity score matching (PSM) offers a compromise of methods and might help in disentangling sources of DIF \citep{liu2020investigating}. Few studies have applied PSM to education assessment data, but those that did, noted a reduction in item bias (e.g., \citet{arikan2018propensity, joldersma2010application, lee2014effect, wu2006using, seo2015comparability, puhan2005evaluating}). PSM has yet to be used to combat mode effects in PISA and as the cited studies applied PSM to students from up to four countries, it remains unknown to what extent a reduction in item bias influences country rankings on a larger scale. Therefore, the present thesis will examine the following research question: \textit{to what extent can different propensity score matching methods reduce mode effects in the PISA 2018 science items, and how does this affect the country league table?} 
 
 This paper is structured as follows. Section \ref{Theory} outlines the theoretical background of this study. Section \ref{Method} discusses the data and analytical strategy used to analyze the data. 
@@ -84,15 +82,13 @@ There are multiple strategies to use the MIMIC model and it is out of the scope 
 
 where $y_i^*$ is the latent ability underlying the observed item response for item $i$, $\lambda_i$ is the factor loading for item $i$ (the item discrimination parameter in IRT models), $\theta$ is the latent ability that follows a normal distribution, $z$ is the dummy-coded grouping variable, $\beta_i$ is the uniform DIF effect for item $i$, $\omega_i$ is the nonuniform DIF effect for item $i$, and $\varepsilon_i$ is the random error for item $i$ \citep{bulut2017detecting}. Uniform and nonuniform DIF for item $i$ are present when $\beta_i \neq 0$ and $\omega_i \neq 0$, respectively. 
 
-%Uniform DIF for item $i$ is present when $\beta_i \neq 0$, indicating that item $i$ is not homogeneous over the grouping variable $z$. Non-uniform DIF for item $i$ exists when $\omega_i \neq 0$. 
-
 \subsection{Propensity Score Matching} \label{sec:psm}
 
 PSM originated in the context of non-randomized experiments as a proxy for random assignment and constructs comparable groups by equating sampling groups on propensity scores based on background characteristics \citep{rosenbaum1983central}. Three steps constitute the matching process: selecting covariates (\ref{sec:cov}), estimating propensity scores and matching (\ref{sec:est_psm}), and evaluating covariate balance (\ref{sec:balance}). 
 
 \subsubsection{Selecting covariates} \label{sec:select_cov}
 
-The first step in PSM is selecting covariates to match the groups on. Although there is some discourse regarding this topic, the consensus is that including covariates that are related to both the construct and the grouping variable generates the best performance \citep{stuart2010matching}. %cuong2013covariates, liu2020investigating
+The first step in PSM is selecting covariates to match the groups on. Although there is some discourse regarding this topic, the consensus is that including covariates that are related to both the construct and the grouping variable generates the best performance \citep{stuart2010matching}. 
 
 \subsubsection{Estimating propensity scores and matching} \label{sec:est_psm}
 
@@ -115,8 +111,6 @@ The estimated propensity scores are matched to adjust for group differences. The
 \paragraph{Greedy matching} Greedy matching methods do not optimize a criterion, which means that units are matched once, without accounting for how other units will be or have been matched. For example, in Nearest Neighbor Matching (NNM), a random unit in the focal group is selected and paired with the closest unit in the reference group, after which the algorithm turns to the next focal unit and repeats this process until all focal units are paired \citep{stuart2010matching, liu2016investigating}. 
 
 \paragraph{Optimal matching} Contrary to greedy matching, matches can be redone in optimal matching until a specified criterion is optimized. The most common optimal matching methods are optimal pair (OPM) and optimal full matching (OFM). OPM matches in pairs and discards the remaining unmatched units, while OFM allows one focal unit to be matched to multiple reference units (one-to-many) or multiple focal units to one reference unit (many-to-one) \citep{stuart2010matching, liu2016investigating}. 
-
-%Both techniques have disadvantages, so while OPM leaves a smaller sample, this does not mean that OFM always performs better as its matching criterion may be looser, leading to a loss in balance \citep{stuart2010matching, liu2016investigating}. 
 
 \subsubsection{Evaluating the covariate balance} \label{sec:balance}
 
@@ -173,47 +167,46 @@ Once DIF was detected, the second step was applying PSM. Section \ref{sec:cov} d
 The last step was to construct country league tables, wherein we followed PISA's methodology \citep{OECD2018}. The unidimensional IRT model for dichotomous responses and generalized partial credit model for polytomous responses were fitted to each of the three matched subsamples to estimate a set of item parameters for each matching method (three sets in total). Returning to the full sample, these item parameters were used to draw ten plausible values for each student per Rubin's rules. This resulted in three sets of ten plausible values for each student in the full sample. The plausible values were weighted to account for the survey design and pooled into an estimate of the science ability for each country. Ordering them for high to low resulted in a country league table for each matching method, which were compared to the table originally published by PISA for differences to inspect how the matching methods affected the ranking order.
 
 \subsubsection{Software} 
-Due to the file size, the initial extraction of the test and questionnaire data corresponding to the selected booklets was done in SPSS \citep{spss}. All other analyses were performed in RStudio \citep{Rstudio2020}, using the packages “lavaan” \citep{lavaan2012}, “MatchIt” \citep{MatchIt2011} and “cobalt” \citep{greifer2020cobalt}. Accompanying syntax and code are available through \href{https://github.com/agjtimmers/CitoThesis}{Github}. 
+Due to the file size, the initial extraction of the test and questionnaire data corresponding to the selected booklets was done in SPSS \citep{spss}. All other analyses were performed in RStudio \citep{Rstudio2020}, using the packages ``lavaan'' \citep{lavaan2012}, ``MatchIt'' \citep{MatchIt2011} and ``cobalt'' \citep{greifer2020cobalt}. Accompanying syntax and code are available through \href{https://github.com/agjtimmers/CitoThesis}{Github}. 
 
 \section{Results}
 
 \subsection{Example Table}
 
-\begin{centering}
-    \begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} l c c c c c c}
-        \hline
-        \hline
-         & \multicolumn{3}{c}{Before matching} & \multicolumn{3}{c}{Nearest Neighbor Matching} \\
-         \midrule
-         Covariate & Computer & Paper & Difference & Computer & Paper & Difference \\
-         \hline
-         ESCS & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Effort PISA & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Effort graded & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Science classes & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Gender & 0 & 0 & 0 & 0 & 0 & 0 \\
-         \hline
-    \end{tabular*}
-\end{centering}
+\begin{center}
+\begin{table}
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} l c c c c c c}
+    \hline
+    \hline
+    & \multicolumn{3}{c}{Before matching} & \multicolumn{3}{c}{Nearest Neighbor Matching} \\
+    \midrule
+    Covariate & Computer & Paper & Difference & Computer & Paper & Difference \\
+    \hline
+    ESCS & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Effort PISA & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Effort graded & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Science classes & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Gender & 0 & 0 & 0 & 0 & 0 & 0 \\
+    \hline
+\end{tabular*}
 
-\begin{centering}
-    \begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} l c c c c c c}
-         & \multicolumn{3}{c}{Optimal Pair Matching} & \multicolumn{3}{c}{Optimal Full Matching} \\
-         \midrule
-         Covariate & Computer & Paper & Difference & Computer & Paper & Difference \\
-         \hline
-         ESCS & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Effort PISA & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Effort graded & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Science classes & 0 & 0 & 0 & 0 & 0 & 0 \\
-         Gender & 0 & 0 & 0 & 0 & 0 & 0 \\
-         \hline
-         \hline
-    \end{tabular*}
-    \captionof{table}{Standardized means of matching variables for computer and paper students before and after matching, and their difference.}
-\end{centering}
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} l c c c c c c}
+    & \multicolumn{3}{c}{Optimal Pair Matching} & \multicolumn{3}{c}{Optimal Full Matching} \\
+    \midrule
+    Covariate & Computer & Paper & Difference & Computer & Paper & Difference \\
+    \hline
+    ESCS & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Effort PISA & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Effort graded & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Science classes & 0 & 0 & 0 & 0 & 0 & 0 \\
+    Gender & 0 & 0 & 0 & 0 & 0 & 0 \\
+    \hline
+    \hline
+\end{tabular*}
+\caption{Standardized means of matching variables for computer and paper students before and after matching, and their difference.}
+\end{table}
+\end{center}
 
 \newpage
 \printbibliography
-
 \end{document}
