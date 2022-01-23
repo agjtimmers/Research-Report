@@ -1,16 +1,8 @@
 \documentclass{article}
+\usepackage{graphicx, titlesec, setspace, hyperref, caption, booktabs, soul, adjustbox, tabularx}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{titlesec}
-\usepackage{setspace}
 \usepackage[backend=biber, style=apa, sorting=nyt, natbib]{biblatex}
 \usepackage[a4paper, total={6in, 8.5in}]{geometry}
-\usepackage{hyperref}
-\usepackage{caption}
-\usepackage{booktabs}
-\usepackage{soul}
-\usepackage{adjustbox}
-\usepackage{tabularx}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,  
@@ -80,7 +72,7 @@ There are multiple strategies to use the MIMIC model and it is out of the scope 
     y_i^* = \lambda_i\theta + \beta_i z + \omega_i\theta z + \varepsilon_i,
 \end{equation}
 
-where $y_i^*$ is the latent ability underlying the observed item response for item $i$, $\lambda_i$ is the factor loading for item $i$ (the item discrimination parameter in IRT models), $\theta$ is the latent ability that follows a normal distribution, $z$ is the dummy-coded grouping variable, $\beta_i$ is the uniform DIF effect for item $i$, $\omega_i$ is the nonuniform DIF effect for item $i$, and $\varepsilon_i$ is the random error for item $i$ \citep{bulut2017detecting}. Uniform and nonuniform DIF for item $i$ are present when $\beta_i \neq 0$ and $\omega_i \neq 0$, respectively. 
+where $y_i^*$ is the latent ability underlying the observed item response for item $i$, $\lambda_i$ is the factor loading for item $i$ (the item discrimination parameter in IRT models), $\theta$ is the latent ability that follows a normal distribution, $z$ is the dummy-coded grouping variable, $\beta_i$ is the uniform DIF effect for item $i$, $\omega_i$ is the nonuniform DIF effect for item $i$, and $\varepsilon_i$ is the random error for item $i$ \citep{bulut2017detecting}. Uniform and nonuniform DIF for item $i$ are present when $\beta_i \neq 0$ and $\omega_i \neq 0$, respectively.  
 
 \subsection{Propensity Score Matching} \label{sec:psm}
 
@@ -167,14 +159,14 @@ Once DIF was detected, the second step was applying PSM. Section \ref{sec:cov} d
 The last step was to construct country league tables, wherein we followed PISA's methodology \citep{OECD2018}. The unidimensional IRT model for dichotomous responses and generalized partial credit model for polytomous responses were fitted to each of the three matched subsamples to estimate a set of item parameters for each matching method (three sets in total). Returning to the full sample, these item parameters were used to draw ten plausible values for each student per Rubin's rules. This resulted in three sets of ten plausible values for each student in the full sample. The plausible values were weighted to account for the survey design and pooled into an estimate of the science ability for each country. Ordering them for high to low resulted in a country league table for each matching method, which were compared to the table originally published by PISA for differences to inspect how the matching methods affected the ranking order.
 
 \subsubsection{Software} 
-Due to the file size, the initial extraction of the test and questionnaire data corresponding to the selected booklets was done in SPSS \citep{spss}. All other analyses were performed in RStudio \citep{Rstudio2020}, using the packages ``lavaan'' \citep{lavaan2012}, ``MatchIt'' \citep{MatchIt2011} and ``cobalt'' \citep{greifer2020cobalt}. Accompanying syntax and code are available through \href{https://github.com/agjtimmers/CitoThesis}{Github}. 
+Due to the file size, the initial extraction of the test and questionnaire data corresponding to the selected booklets was done in SPSS \citep{spss}. All other analyses were performed in RStudio \citep{Rstudio2020}, using the packages "lavaan" \citep{lavaan2012}, "MatchIt" \citep{MatchIt2011} and "cobalt" \citep{greifer2020cobalt}. Accompanying syntax and code are available through \href{https://github.com/agjtimmers/CitoThesis}{Github}. 
 
+\newpage
 \section{Results}
-
 \subsection{Example Table}
 
 \begin{center}
-\begin{table}
+\begin{table} [!ht]
 \renewcommand{\arraystretch}{2}
 \begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} l c c c c c c}
     \hline

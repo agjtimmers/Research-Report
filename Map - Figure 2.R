@@ -1,15 +1,13 @@
 ################################################################################
-# Map of the world - Figure 2
+# Map - Figure 2
 ################################################################################
 
 ################################################################################
 library(tidyverse) # Pipes
-library(haven) # Read data
-library(rgdal)
-library(RColorBrewer)
-library(tmap)
-library(leaflet)
-library(sf)
+library(rgdal) 
+library(tmap) # Generate map, World data
+library(leaflet) # Map
+library(sf) 
 ################################################################################
 
 ################################################################################
@@ -57,5 +55,5 @@ mode_map <- tm_shape(World) +
             legend.text.size = 1)
 
 # Save the figure
-tmap_save(tm = mode_map, file = "img/mode_map.png")
+tmap_save(tm = mode_map, file = "mode_map.png")
 ################################################################################
