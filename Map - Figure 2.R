@@ -1,12 +1,10 @@
 ################################################################################
-# Map of the world - Figure 2
+# Map - Figure 2
 ################################################################################
 
 ################################################################################
-library(tidyverse) # Pipes
-library(haven) # Read data
+library(tidyverse) 
 library(rgdal)
-library(RColorBrewer)
 library(tmap)
 library(leaflet)
 library(sf)
